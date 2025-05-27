@@ -97,6 +97,11 @@ Using **HTTPS with TLS (Transport Layer Security)** ensures:
 # Technical Challenge
 
 Firstly, I don’t have ESP32 and I didn’t want to buy a new one. So I looked for an online IoT platform and I found [wokwi.com](http://wokwi.com) and I used esp32 board inside this platform to get data but actually, it can not give me precise data e.g. 1st time data of battery percentage might be 50 but 2nd time might be 90. So, it is showing data randomly.
+> **Note:**  
+> Wokwi does **not** support real GPS data because it:
+> - Simulates hardware only (does not interact with actual GPS satellites).
+> - Cannot access real-world satellite GPS in simulation.
+> - Only supports GPS module simulation (such as NEO-6M) via pre-defined NMEA sentences, which means the GPS data is not real but generated or scripted for simulation purposes.
 
 For implementing a button to download data in csv format, I use Firebase to deploy a web interface and download data which is from wokwi.com platform.
 
