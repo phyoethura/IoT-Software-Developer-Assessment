@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Firebase GPS Data</title>
+</head>
+<body>
+    <h2>ESP32 GPS Logs</h2>
+    <button onclick="downloadCSV()">Download CSV</button>
+    <table border="1" id="data-table">
+        <tr><th>Timestamp</th><th>Latitude</th><th>Longitude</th><th>Battery</th></tr>
+    </table>
+
+    <script>
+    let gpsData = [];
+
+    async function fetchData() {
+        const res = await fetch("https://your-project-id.firebaseio.com/gpsData.json");
+        const data = await res.json();
+        const table = document.getElementById('data-table');
+
+        for (const key in data) {
+        const row = data[key];
+        gpsData.push(row);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${row.timestamp}</td><td>${row.latitude}</td><td>${row.longitude}</td><td>${row.battery}</td>`;
+        table.appendChild(tr);
+        }
+    }
+
+    function downloadCSV() {
+        let csv = "Timestamp,Latitude,Longitude,Battery\n";
+        gpsData.forEach(row => {
+        csv += `${row.timestamp},${row.latitude},${row.longitude},${row.battery}\n`;
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "gps_data.csv";
+        a.click();
+    }
+
+    fetchData();
+    </script>
+</body>
+</html>
