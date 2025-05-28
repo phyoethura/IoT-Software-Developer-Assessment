@@ -1,4 +1,4 @@
-# GPS Pet Collar Communication & Debugging
+# Open Ended Question
 
 ## 1. Most Suitable Protocol for Intermittent GPS Data Transmission
 
