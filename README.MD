@@ -1,4 +1,4 @@
-# Open Ended Question
+# Open Ended Questions
 
 ## 1. Most Suitable Protocol for Intermittent GPS Data Transmission
 
